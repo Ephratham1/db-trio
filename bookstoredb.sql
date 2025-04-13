@@ -300,7 +300,7 @@ CREATE TABLE order_history (
     FOREIGN KEY (orderstatus_id) REFERENCES order_status(orderstatus_id)
 );
 --insert data into order history table
-INSERT INTO order_history (history_id, order_id, status_id, updated_at) VALUES
+INSERT INTO order_history (history_id, order_id, orderstatus_id, updated_at) VALUES
 (1, 1, 1, '2025-04-01 09:00:00'),  -- Order Placed
 (2, 1, 2, '2025-04-01 12:00:00'),  -- Processing
 (3, 1, 3, '2025-04-02 08:30:00'),  -- Shipped
