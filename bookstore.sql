@@ -8,7 +8,7 @@ CREATE TABLE book_language (
     language_id INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
---inserting data into book language table 
+--insert data into book language table 
 INSERT INTO book_language (language_id, name) VALUES
 (1, 'English'),
 (2, 'Spanish'),
@@ -20,8 +20,7 @@ INSERT INTO book_language (language_id, name) VALUES
 (8, 'Arabic'),
 (9, 'Portuguese'),
 (10, 'Hindi');
-insert into publisher(publisher_id,name) VALUES
-("1", "")
+
 --Publisher table
 CREATE TABLE publisher (
     publisher_id INT PRIMARY KEY,
@@ -40,7 +39,7 @@ INSERT INTO publisher (publisher_id, name) VALUES
 (9, 'Oxford University Press'),
 (10, 'Cambridge University Press');
 
--- Book table --
+--Book table --
 CREATE TABLE book (
     book_id INT PRIMARY KEY,
     title VARCHAR(250) NOT NULL,
@@ -50,7 +49,7 @@ CREATE TABLE book (
     publish_year INT,
     price DECIMAL(10,2)
 );
---book table data rows
+--inser data into book table
 INSERT INTO book (book_id, title, isbn, language_id, publisher_id, publish_year, price) VALUES
 (1, 'American Gods', '9780062472106', 1, 1, 2001, 14.99),
 (2, 'The Handmaid''s Tale', '9780385490818', 2, 2, 1985, 12.95),
@@ -69,7 +68,7 @@ CREATE TABLE author (
     name VARCHAR(255) NOT NULL
 );
 
---inserting data into author table 
+--insert data into author table 
 INSERT INTO author (author_id, name) VALUES
 (1, 'George Orwell'),
 (2, 'Jane Austen'),
@@ -81,6 +80,7 @@ INSERT INTO author (author_id, name) VALUES
 (8, 'Leo Tolstoy'),
 (9, 'Gabriel García Márquez'),
 (10, 'Haruki Murakami');
+
 --Book_author table--
 CREATE TABLE book_author (
     book_id INT,
@@ -89,7 +89,7 @@ CREATE TABLE book_author (
     FOREIGN KEY (book_id) REFERENCES book(book_id),
     FOREIGN KEY (author_id) REFERENCES author(author_id)
 );
---inserting data into book author table 
+--insert data into book author table 
 INSERT INTO book_author (book_id, author_id) VALUES
 (1, 1),
 (2, 2),
@@ -101,11 +101,14 @@ INSERT INTO book_author (book_id, author_id) VALUES
 (8, 8),
 (9, 9),
 (10, 10);
+
 --Country table--
 CREATE TABLE country (
     country_id INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
+
+--insert data into country table 
 INSERT INTO country (country_id, name) VALUES
 (1, 'Norway'),
 (2, 'South Africa'),
@@ -117,6 +120,7 @@ INSERT INTO country (country_id, name) VALUES
 (8, 'Denmark'),
 (9, 'Colombia'),
 (10, 'Egypt');
+
 --Address table--
 CREATE TABLE address (
     address_id INT PRIMARY KEY,
@@ -127,7 +131,7 @@ CREATE TABLE address (
     country_id INT,
     FOREIGN KEY (country_id) REFERENCES country(country_id)
 );
---address data rows
+--insert data into address table
 INSERT INTO address (address_id, street, city, state, zip_code, country_id) VALUES
 (1, '18 Fjordgate', 'Oslo', '', '0250', 1),
 (2, '22 Long St', 'Cape Town', '', '8001', 2),
@@ -139,12 +143,13 @@ INSERT INTO address (address_id, street, city, state, zip_code, country_id) VALU
 (8, '12 Nyhavn', 'Copenhagen', '', '1051', 8),
 (9, '20 Carrera 7', 'Bogotá', '', '110311', 9),
 (10, '5 Tahrir Square', 'Cairo', '', '11511', 10);
---Address_status table--
+
+--Address status table--
 CREATE TABLE address_status (
     status_id INT PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
---Drder status data rows
+--insert data into address status table 
 INSERT INTO address_status (status_id, name) VALUES
 (1, 'Main'),
 (2, 'Backup'),
@@ -156,6 +161,7 @@ INSERT INTO address_status (status_id, name) VALUES
 (8, 'Updated'),
 (9, 'Archived'),
 (10, 'Current');
+
 --Customer table 
 CREATE TABLE customer (
     customer_id INT PRIMARY KEY,
@@ -163,7 +169,7 @@ CREATE TABLE customer (
     email VARCHAR(255),
     phone VARCHAR(20)
 );
---Customer data rows
+--insert data into Customer table
 INSERT INTO customer (customer_id, name, email, phone) VALUES
 (1, 'Laura Wells', 'laura.w@example.com', '444-1100'),
 (2, 'Marcus Reid', 'marcus.r@example.com', '444-2200'),
@@ -186,7 +192,7 @@ CREATE TABLE customer_address (
     FOREIGN KEY (address_id) REFERENCES address(address_id),
     FOREIGN KEY (status_id) REFERENCES address_status(status_id)
 );
---Customer address data table 
+--insert into Customer address table
 INSERT INTO customer_address (customer_id, address_id, status_id) VALUES
 (1, 1, 10),
 (2, 2, 9),
@@ -205,7 +211,7 @@ CREATE TABLE shipping_method (
     name VARCHAR(100) NOT NULL,
     cost DECIMAL(10,2)
 );
---shipping method data 
+--insert data into shipping method table 
 INSERT INTO shipping_method (shipping_id, name, cost) VALUES
 (1, 'Standard Shipping', 4.99),
 (2, 'Express Shipping', 9.99),
@@ -223,7 +229,7 @@ CREATE TABLE order_status (
     orderstatus_id INT PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
---order status table data
+--insert data into order status table
 INSERT INTO order_status (status_id, name) VALUES
 (1, 'Order Placed'),
 (2, 'Processing'),
@@ -248,7 +254,7 @@ CREATE TABLE cust_order (
     FOREIGN KEY (shipping_id) REFERENCES shipping_method(shipping_id),
     FOREIGN KEY (orderstatus_id) REFERENCES order_status(orderstatus_id)
 );
---customer order table data 
+--insert into customer order table
 INSERT INTO cust_order (order_id, customer_id, order_date, shipping_id, status_id) VALUES
 (1, 1, '2025-04-01', 1, 4),  -- Delivered
 (2, 2, '2025-04-02', 2, 3),  -- Shipped
@@ -260,6 +266,7 @@ INSERT INTO cust_order (order_id, customer_id, order_date, shipping_id, status_i
 (8, 8, '2025-04-08', 8, 3),  -- Shipped
 (9, 9, '2025-04-09', 9, 2),  -- Processing
 (10, 10, '2025-04-10', 10, 4);  -- Delivered
+
 --Order line table 
 CREATE TABLE order_line (
     order_id INT,
@@ -270,7 +277,7 @@ CREATE TABLE order_line (
     FOREIGN KEY (order_id) REFERENCES cust_order(order_id),
     FOREIGN KEY (book_id) REFERENCES book(book_id)
 );
---order line table data
+--insert data into order line table
 INSERT INTO order_line (order_id, book_id, quantity, line_price) VALUES
 (1, 1, 1, 14.99),   -- American Gods
 (1, 2, 1, 12.95),   -- The Handmaid's Tale
@@ -282,6 +289,7 @@ INSERT INTO order_line (order_id, book_id, quantity, line_price) VALUES
 (6, 8, 2, 19.50),   -- Normal People
 (7, 9, 2, 24.00),   -- The Kite Runner
 (8, 10, 1, 15.00);
+
 --Order history table 
 CREATE TABLE order_history (
     history_id INT PRIMARY KEY,
@@ -291,7 +299,7 @@ CREATE TABLE order_history (
     FOREIGN KEY (order_id) REFERENCES cust_order(order_id),
     FOREIGN KEY (orderstatus_id) REFERENCES order_status(orderstatus_id)
 );
---order history data table row
+--insert data into order history table
 INSERT INTO order_history (history_id, order_id, status_id, updated_at) VALUES
 (1, 1, 1, '2025-04-01 09:00:00'),  -- Order Placed
 (2, 1, 2, '2025-04-01 12:00:00'),  -- Processing
