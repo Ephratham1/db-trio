@@ -230,7 +230,7 @@ CREATE TABLE order_status (
     name VARCHAR(50) NOT NULL
 );
 --insert data into order status table
-INSERT INTO order_status (status_id, name) VALUES
+INSERT INTO order_status (orderstatus_id, name) VALUES
 (1, 'Order Placed'),
 (2, 'Processing'),
 (3, 'Shipped'),
@@ -255,7 +255,7 @@ CREATE TABLE cust_order (
     FOREIGN KEY (orderstatus_id) REFERENCES order_status(orderstatus_id)
 );
 --insert into customer order table
-INSERT INTO cust_order (order_id, customer_id, order_date, shipping_id, status_id) VALUES
+INSERT INTO cust_order (order_id, customer_id, order_date, shipping_id, orderstatus_id) VALUES
 (1, 1, '2025-04-01', 1, 4),  -- Delivered
 (2, 2, '2025-04-02', 2, 3),  -- Shipped
 (3, 3, '2025-04-03', 3, 5),  -- Cancelled
